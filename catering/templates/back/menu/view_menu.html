@@ -1,0 +1,34 @@
+{% extends 'back/base.html' %} {% block content %}
+<div class="col-md-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">{{title}}</h4>
+      <form class="forms-sample" method="POST">
+        {% csrf_token %}
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Menu</label>
+          <div class="col-sm-9">
+            <p>{{menu.menu}}</p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Harga</label>
+          <div class="col-sm-9">
+            <p>{{menu.harga}}</p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Deskripsi</label>
+          <div class="col-sm-9">
+            <p>{{menu.deskripsi}}</p>
+          </div>
+        </div>
+
+        <a href="{% url 'tabel-menu' %}" class="btn btn-primary me-2"
+          >Kembali</a
+        >
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

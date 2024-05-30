@@ -1,0 +1,52 @@
+{% extends 'back/base.html' %} {% block content %}
+<div class="col-md-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">{{title}}</h4>
+      <form class="forms-sample" method="POST">
+        {% csrf_token %}
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Menu</label>
+          <div class="col-sm-9">
+            <input
+              type="text"
+              name="menu"
+              class="form-control"
+              placeholder="Menu"
+              value="{{menu.menu}}"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Harga</label>
+          <div class="col-sm-9">
+            <input
+              type="text"
+              name="harga"
+              class="form-control"
+              placeholder="Harga"
+              value="{{menu.harga}}"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Deskripsi</label>
+          <div class="col-sm-9">
+            <textarea
+              name="deskripsi"
+              id=""
+              cols="30"
+              rows="20"
+              class="form-control"
+            >
+{{menu.deskripsi}}</textarea
+            >
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary me-2">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

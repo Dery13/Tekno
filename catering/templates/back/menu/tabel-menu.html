@@ -1,0 +1,61 @@
+{% extends 'back/base.html' %} {% block content %}
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Tabel Menu</h4>
+
+      <a
+        type="button"
+        class="btn btn-inverse-info btn-fw"
+        href="{% url 'tambah_menu' %}"
+      >
+        Add
+      </a>
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Menu</th>
+              <th>Harga</th>
+              <th>Deskripsi</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for a in menu %}
+            <tr>
+              <td class="py-1">{{forloop.counter}}</td>
+              <td>{{a.menu}}</td>
+              <td>{{a.harga}}</td>
+              <td>{{a.deskripsi|safe}}</td>
+              <td>{{a.date}}</td>
+              <td>
+                <a class="btn btn-sm btn-info" href="{% url 'view_menu' a.id %}"
+                  >View</a
+                >
+                <a
+                  class="btn btn-sm btn-warning"
+                  href="{% url 'edit_menu' a.id %}"
+                  >Edit</a
+                >
+                <a
+                  onclick="return confirm('Delete Menu?');"
+                  class="btn btn-sm btn-danger"
+                  href="{% url 'delete_menu' a.id %}"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
