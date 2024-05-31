@@ -7,9 +7,13 @@ class Menus(models.Model):
     harga = models.CharField(max_length=100, blank=False, null=False)
     deskripsi = RichTextUploadingField()
     date = models.DateTimeField(auto_now_add=True)
+    thumbnail = models.ImageField(upload_to='media/menu/', blank=True, null=True)
 
     def __str__(self):
         return "{} - {}".format(self.menu, self.harga)
+    
+    def ImgUrl(self):
+        if self.thumbnail == '' or self.thumbnail == None
 
     class Meta:
         ordering = ['-date']

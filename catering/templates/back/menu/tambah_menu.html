@@ -9,33 +9,15 @@
         {% csrf_token %}
         <div class="form-group row">
           <label class="col-sm-3 col-form-label">Menu</label>
-          <div class="col-sm-9">
-            <input
-              type="text"
-              name="menu"
-              class="form-control"
-              placeholder="Menu"
-              value="{{menu.menu}}"
-            />
-          </div>
+          <div class="col-sm-9">{{form.menu}}</div>
         </div>
         <div class="form-group row">
           <label class="col-sm-3 col-form-label">Harga</label>
-          <div class="col-sm-9">
-            <input
-              type="text"
-              name="harga"
-              class="form-control"
-              placeholder="Harga"
-              value="{{menu.harga}}"
-            />
-          </div>
+          <div class="col-sm-9">{{form.harga}}</div>
         </div>
         <div class="form-group row">
           <label class="col-sm-3 col-form-label">Deskripsi</label>
-          <div class="col-sm-9">
-{{form.deskripsi}}
-          </div>
+          <div class="col-sm-9">{{form.deskripsi}}</div>
         </div>
 
         <button type="submit" class="btn btn-primary me-2">Submit</button>

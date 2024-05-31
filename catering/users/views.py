@@ -1,18 +1,19 @@
 from django.shortcuts import render, redirect
 from .models import User
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import User
 # Create your views here.
 
+def is_operator(user):
+    if user.groups.filter(name='Operator').exists():
+        return True
+    else:
+        return False
 
-# def index(request):
-#     template_name = "index.html"
-#     menu = Menus.objects.all()
-#     context = {
-#         'title': 'Menu',
-#         'menu': menu,
-#     }
-#     return render(request, template_name, context)
-
+@login_required
 def dashboard(request):
+    if request.user.groups.filter(name='Operator').exists():
+        request.session['is_operator'] = 'operator'
     template_name = "back/dashboard.html"
     context = {
         'title': 'Dashboard'
@@ -20,17 +21,19 @@ def dashboard(request):
 
     return render(request, template_name, context)
 
-def dashboard(request):
-    template_name = "back/base.html"
-    context = {
-        'title': "Dashboard"
-    }
+# def dashboard(request):
+#     template_name = "back/base.html"
+#     context = {
+#         'title': "Dashboard"
+#     }
 
-    return render(request, template_name, context)
+#     return render(request, template_name, context)
  
 def menu(request):
     return render(request, 'menu.html')
 
+@login_required
+@user_passes_test(is_operator)
 def tabel_user(request):
     template_name = "back/users/tabel-user.html"
     user = User.objects.all()
@@ -41,6 +44,8 @@ def tabel_user(request):
 
     return render(request, template_name, context)
 
+@login_required
+@user_passes_test(is_operator)
 def tambah_user(request):
     template_name = "back/users/tambah_user.html"
     if request.method == "POST":
@@ -57,6 +62,8 @@ def tambah_user(request):
 
     return render(request, template_name, context)
 
+@login_required
+@user_passes_test(is_operator)
 def view_user(request, id):
     template_name = "back/users/view_user.html"
     user = User.objects.get(id=id)
@@ -67,6 +74,8 @@ def view_user(request, id):
     }
     return render(request, template_name, context)
 
+@login_required
+@user_passes_test(is_operator)
 def edit_user(request, id):
     template_name = "back/users/edit_user.html"  
     user = User.objects.get(id=id)
@@ -85,12 +94,8 @@ def edit_user(request, id):
 
     return render(request, template_name, context)
 
+@login_required
+@user_passes_test(is_operator)
 def delete_user(request, id):
     User.objects.get(id=id).delete()
     return redirect(tabel_user)
-
-# def about(request):
-#     return render(request, 'about.html')
-
-# def contact(request):
-#     return render(request, 'contact.html')

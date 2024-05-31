@@ -83,15 +83,9 @@
             </button>
           </div>
           <div>
-            <a class="navbar-brand brand-logo" href="index.html">
+            <a class="navbar-brand brand-logo" href="{%  url 'index' %}">
               <img
-                src="{% static 'assets/img/dapur.jpg' %}"
-                alt="logo"
-              />
-            </a>
-            <a class="navbar-brand brand-logo-mini" href="index.html">
-              <img
-                src="{% static 'assets/img/dapur.jpg' %}"
+                src="{% static 'assets_back/images/dapur.svg' %}"
                 alt="logo"
               />
             </a>
@@ -101,7 +95,8 @@
           <ul class="navbar-nav">
             <li class="nav-item fw-semibold d-none d-lg-block ms-0">
               <h1 class="welcome-text">
-                Welcome, <span class="text-black fw-bold">{{user}}</span>
+                Welcome,
+                <span class="text-black fw-bold">{{user}}</span>
               </h1>
             </li>
           </ul>
@@ -148,7 +143,7 @@
                   <p class="mb-1 mt-3 fw-semibold">{{user}}</p>
                   <p class="fw-light text-muted mb-0">{{user.username}}</p>
                 </div>
-                <a class="dropdown-item"
+                <a class="dropdown-item" href="{% url 'logout' %}"
                   ><i
                     class="dropdown-item-icon mdi mdi-power text-primary me-2"
                   ></i
