@@ -22,4 +22,4 @@ urlpatterns = [
     # path('dashboard/', include('users.urls')),
 #     path('about/', about, name='about'),
 #     path('contact/', contact, name='contact'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

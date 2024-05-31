@@ -31,7 +31,7 @@
               <td class="py-1">{{forloop.counter}}</td>
               <td>{{a.menu}}</td>
               <td>{{a.harga}}</td>
-              <td>{{a.deskripsi|safe}}</td>
+              <td>{{a.deskripsi|safe|truncatewords:5}}</td>
               <td>{{a.date}}</td>
               <td>
                 <a class="btn btn-sm btn-info" href="{% url 'view_menu' a.id %}"

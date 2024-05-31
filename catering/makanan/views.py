@@ -54,21 +54,25 @@ def view_menu(request, id):
 
 @login_required
 def edit_menu(request, id):
-    template_name = "back/menu/edit_menu.html"  
+    template_name = "back/menu/tambah_menu.html"  
     menus = Menus.objects.get(id=id)
     if request.method == "POST":
-        menu = request.POST.get('menu')
-        harga = request.POST.get('harga')
-        deskripsi = request.POST.get('deskripsi')
-        menus.menu = menu
-        menus.harga = harga
-        menus.deskripsi = deskripsi
-        menus.save()
-        return redirect(tabelMenu)
+        # menu = request.POST.get('menu')
+        # harga = request.POST.get('harga')
+        # deskripsi = request.POST.get('deskripsi')
+        # menus.menu = menu
+        # menus.harga = harga
+        # menus.deskripsi = deskripsi
+        # menus.save()
+        # return redirect(tabelMenu)
+        form = MenuForms(request.POST, instance=menus)
+    else:
+        form = MenuForms(instance=menus)
+
     context = {
         'title': 'edit menu',
         'menu': menus,
-
+        'form': form,
     }
 
     return render(request, template_name, context)

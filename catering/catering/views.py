@@ -19,13 +19,18 @@ def index(request):
     template_name = "index.html"
     menu = Menus.objects.all().order_by('-date')[:3]
     context = {
-        'title': 'Menu',
+        'title': 'Dapurnya Nini',
         'menu': menu,
     }
     return render(request, template_name, context)
  
 def menu(request):
-    return render(request, 'menu.html')
+    menu = Menus.objects.all()
+    context = {
+        'title' : 'Menu',
+        'menu': menu,
+    }
+    return render(request, 'menu.html', context)
 
 def login(request):   
     if request.user.is_authenticated:

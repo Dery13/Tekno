@@ -6,7 +6,7 @@ from .models import Menus
 class MenuForms(forms.ModelForm):
     class Meta:
         model = Menus
-        fields = ('menu', 'harga', 'deskripsi')
+        fields = ('menu', 'harga', 'deskripsi', 'thumbnail')
         widgets = {
              'menu' : forms.TextInput(attrs={'class':'form-control'}),
              'harga' : forms.TextInput(attrs={'class':'form-control'}),
